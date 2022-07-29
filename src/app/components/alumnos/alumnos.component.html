@@ -1,0 +1,32 @@
+<mat-card class="example-card">
+  <mat-card-title>Lista de Alumnos</mat-card-title>
+  <mat-card-subtitle>Generación 2020</mat-card-subtitle>
+  <mat-card-content>
+  <mat-list>
+    <mat-list-item *ngFor="let alumno of alumnos">
+        <h4 mat-line>Nombre: {{alumno.nombre | titlecase}}</h4>
+        <p mat-line>Grado: {{alumno.grado}}</p>
+        <p mat-line> Grupo: {{alumno.grupo | titlecase}} </p>
+        <p mat-line> Aprobado: {{alumno.aprobado}} </p>
+        <p mat-line> Estatus:
+          <mat-chip-list aria-label="Alumnos selection">
+            <div [ngSwitch]="alumno.estatus">
+              <div *ngSwitchCase="'1'"><mat-chip color="primary" selected>Regular</mat-chip></div>
+              <div *ngSwitchCase="'2'"><mat-chip color="accent" selected>Recurse</mat-chip></div>
+              <div *ngSwitchCase="'3'"><mat-chip color="warn" selected>Baja Definitiva</mat-chip></div>
+              <div *ngSwitchCase="'4'"><mat-chip color="secondary" selected>Baja Temporal</mat-chip></div>
+            </div>
+
+          </mat-chip-list>
+        </p>
+        <p mat-line> Calificación:
+          <i
+          [ngClass]="{'text-red': alumno.calificacion <= 6, 'text-green': alumno.calificacion > 6}"
+          [ngStyle]="{'font-size':'20px'}">{{alumno.calificacion}} </i>
+        </p>
+        <mat-divider [inset]="true"></mat-divider>
+    </mat-list-item>
+  </mat-list>
+</mat-card-content>
+</mat-card>
+
